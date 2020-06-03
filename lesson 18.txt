@@ -1,0 +1,10 @@
+SELECT DISTINCT maker, 
+		pr.price
+FROM Product 
+	INNER JOIN (SELECT model,price 
+		    FROM Printer 
+		    WHERE color = 'y' 
+			  AND price = (SELECT MIN(PRICE) 
+					FROM Printer 
+					WHERE color = 'y')) AS pr
+	ON Product.model=pr.model

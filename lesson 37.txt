@@ -1,0 +1,12 @@
+SELECT Classes.class
+FROM Classes 
+	JOIN (SELECT class,
+		     name 
+	      FROM Ships 
+	      UNION  
+	      SELECT ship,
+		     ship 
+	      FROM Outcomes) as A
+	ON Classes.class = A.class
+GROUP BY Classes.class
+HAVING COUNT(Classes.class) = 1

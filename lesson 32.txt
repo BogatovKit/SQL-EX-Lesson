@@ -1,0 +1,12 @@
+SELECT country, 
+	CAST(AVG((bore*bore*bore)/2.0) AS NUMERIC(6,2)) AS mw
+FROM Classes 
+	INNER JOIN (SELECT class,
+			   name 
+	      	    FROM Ships 
+	            UNION  
+	            SELECT ship,
+		           ship 
+	            FROM Outcomes) AS sh
+	ON Classes.class=sh.class	
+GROUP BY country

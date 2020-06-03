@@ -1,0 +1,6 @@
+SELECT DISTINCT Product.type, 
+		Laptop.model, 
+		Laptop.speed
+FROM Laptop 
+	INNER JOIN Product ON Laptop.model = Product.model
+WHERE Laptop.speed < ALL(SELECT speed FROM PC)

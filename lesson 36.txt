@@ -1,0 +1,7 @@
+SELECT DISTINCT name
+FROM Classes  
+	INNER JOIN Ships ON Classes.class = Ships.name
+UNION 
+SELECT DISTINCT ship
+FROM Classes 
+	INNER JOIN Outcomes ON Classes.class = Outcomes.ship

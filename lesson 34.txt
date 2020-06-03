@@ -1,0 +1,6 @@
+SELECT name
+FROM Ships, Classes
+WHERE launched>=1922 
+	AND Ships.class = Classes.class 
+	AND type = 'bb' 
+	AND displacement>35000

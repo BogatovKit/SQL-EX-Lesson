@@ -1,0 +1,21 @@
+SELECT 	Income.point, 
+	Income.date, 
+	SUM(out) AS out, 
+	SUM(inc) AS inc
+FROM Income 
+	LEFT JOIN Outcome ON Income.point = Outcome.point 
+		AND Income.date = Outcome.date 
+GROUP BY Income.point,
+	 Income.date
+
+UNION
+
+SELECT  Outcome.point,
+	Outcome.date,
+	SUM(out) AS out, 
+	SUM(inc) AS inc
+FROM Outcome 
+	LEFT JOIN Income ON Outcome.point = Income.point 
+		AND Outcome.date = Income.date 
+GROUP BY Outcome.point,
+	 Outcome.date

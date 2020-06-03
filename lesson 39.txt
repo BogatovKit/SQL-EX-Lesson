@@ -1,0 +1,10 @@
+WITH dam AS (
+	SELECT ship, battle, name, date 
+	FROM Outcomes 
+		INER JOIN Battles ON result = 'damaged' AND battle = name
+	)
+SELECT DISTINCT dam.ship
+FROM dam 
+	INNER JOIN (SELECT ship, battle, name, date 
+		FROM Outcomes INER JOIN Battles ON battle = name) AS bat
+	ON dam.date<bat.date AND bat.ship=dam.ship

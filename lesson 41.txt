@@ -1,0 +1,18 @@
+SELECT maker, 
+	CASE
+	WHEN COUNT(price) <> COUNT(*)
+	THEN NULL
+	ELSE MAX(price)
+	END as 'max_price'
+
+FROM Product 
+	INNER JOIN (SELECT model, price 
+			FROM PC
+			UNION 
+			SELECT model, price 
+			FROM Laptop
+			UNION 
+			SELECT model, price 
+			FROM Printer) AS all_model
+	ON Product.model=all_model.model
+GROUP BY maker

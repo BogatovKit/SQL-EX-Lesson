@@ -1,0 +1,6 @@
+SELECT maker, 
+       AVG(screen)
+FROM Laptop 
+	INNER JOIN (SELECT maker, model FROM Product WHERE type = 'Laptop') AS Prod
+	ON Laptop.model = Prod.model
+GROUP BY maker
